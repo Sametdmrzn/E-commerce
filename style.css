@@ -18,3 +18,71 @@
     opacity: 0;
     transition: opacity 0.3s;
 }
+/* Medium Ekranlar için (tablet) */
+@media (max-width: 768px) {
+    .card {
+        flex: 0 0 100%; /* Kartları tam genişlikte yap */
+        max-width: 100%; /* Maksimum genişliği %100 yap */
+    }
+}
+
+/* Small Ekranlar için (mobil) */
+@media (max-width: 576px) {
+    .card {
+        margin-bottom: 15px; /* Kartlar arasındaki boşluğu azalt */
+    }
+}
+
+.row {
+    display: flex; /* Flexbox ile yatay yerleşim */
+    flex-wrap: wrap; /* Kartlar taşarsa yeni satıra geçsin */
+}
+
+.col-md-4 {
+    flex: 0 0 33.333%; /* Üç kart yan yana yerleştir */
+    max-width: 33.333%; /* Maksimum genişliği %33.33 yap */
+}
+
+/* Küçük ekranlar için 1 kart göstermek için */
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 100%; /* Kartları tam genişlikte göster */
+        max-width: 100%; /* Maksimum genişlik %100 */
+    }
+}
+.footer {
+    background-color: #f8f9fa; /* Açık gri arka plan */
+    padding: 20px 0; /* Üst ve alt boşluk */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+    border-top: 1px solid #e0e0e0; /* Üst kenarda ince bir çizgi */
+}
+
+.footer .row {
+    margin-bottom: 20px; /* Bölümler arası boşluk */
+}
+
+.footer h5 {
+    margin-bottom: 10px; /* Başlık ve içerik arası boşluk */
+    font-weight: bold; /* Başlıkları kalın yap */
+}
+
+.footer p {
+    margin: 0; /* Paragraflar arası boşlukları kaldır */
+    font-size: 14px; /* Yazı boyutunu ayarla */
+    color: #555; /* Daha koyu bir renk */
+}
+
+.footer a {
+    color: #007bff; /* Bağlantı rengi */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    transition: color 0.2s ease; /* Renk geçişi */
+}
+
+.footer a:hover {
+    color: #0056b3; /* Üzerine gelindiğinde daha koyu bir renk */
+    text-decoration: underline; /* Üzerine gelindiğinde alt çizgi ekle */
+}
+
+.text-center {
+    text-align: center; /* Metni ortala */
+}

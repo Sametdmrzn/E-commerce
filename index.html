@@ -6,11 +6,11 @@
     <title>Ürün Kartları</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> <!-- Bootstrap Icons dahil edildi -->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid justify-content-center">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">Bozkurt Toptan</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,6 +34,14 @@
                         <a class="nav-link" href="#">İletişim</a>
                     </li>
                 </ul>
+            </div>
+            <div class="d-flex">
+                <a class="nav-link" href="#" aria-label="Sepet">
+                    <i class="bi bi-cart fs-3"></i> <!-- Sepet simgesi -->
+                </a>
+                <a class="nav-link" href="#" aria-label="Kullanıcı">
+                    <i class="bi bi-person fs-3"></i> <!-- Kullanıcı simgesi -->
+                </a>
             </div>
         </div>
     </nav>
@@ -66,36 +74,6 @@
             </div>
             <div class="col-md-4">
                 <div class="card text-center">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Ürün 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Ürün 2</h5>
-                        <p class="card-text">Ürün açıklaması burada yer alacak.</p>
-                        <div class="price">₺150</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Ürün 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Ürün 2</h5>
-                        <p class="card-text">Ürün açıklaması burada yer alacak.</p>
-                        <div class="price">₺150</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <img src="https://via.placeholder.com/300" class="card-img-top" alt="Ürün 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Ürün 2</h5>
-                        <p class="card-text">Ürün açıklaması burada yer alacak.</p>
-                        <div class="price">₺150</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center">
                     <img src="https://via.placeholder.com/300" class="card-img-top" alt="Ürün 3">
                     <div class="card-body">
                         <h5 class="card-title">Ürün 3</h5>
@@ -110,37 +88,27 @@
     <script src="assets/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <footer class="footer bg-light text-center text-lg-start mt-5">
-        <div class="container p-4">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-12 mb-4">
-                    <h5 class="text-uppercase">Hakkımızda</h5>
-                    <p>
-                        Bu web sitesi, tüm hakları saklıdır. Tüm içerik ve tasarım, izinsiz kopyalanamaz veya dağıtılamaz.
-                    </p>
+                <div class="col-md-4 text-center">
+                    <h5>Hakkımızda</h5>
+                    <p>Şirketimiz hakkında kısa bir bilgi burada yer alacak.</p>
                 </div>
-                <div class="col-lg-6 col-md-12 mb-4">
-                    <h5 class="text-uppercase">İletişim</h5>
-                    <p>
-                        E-posta: <a href="mailto:info@bozkurt.com">info@bozkurt.com</a><br>
-                        Telefon: <a href="tel:+901234567890">+90 546 946 78 89</a>
-                    </p>
+                <div class="col-md-4 text-center">
+                    <h5>İletişim</h5>
+                    <p>info@bozkurt.com</p>
+                    <p>(+90) 123 456 7890</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h5>Diğer</h5>
+                    <p><a href="#">Hizmet Şartları</a></p>
+                    <p><a href="#">Gizlilik Politikası</a></p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <hr class="my-4">
-                    <p class="text-muted">© 2024 Bozkurt Toptan. Tüm Hakları Saklıdır.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <a href="#" class="me-4 text-reset">Instagram</a>
-                </div>
-            </div>
+            <p class="text-center mt-3">© 2024 Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
-    ``
-    
 </body>
 </html>
