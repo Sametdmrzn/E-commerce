@@ -5,6 +5,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
     header("Location: admin_login.php");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +22,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
             <li><a href="urun_ekle.php">Ürün Ekle</a></li>
             <li><a href="urun_listesi.php">Ürün Listesi</a></li>
         </ul>
+        
     </nav>
 </body>
 </html>

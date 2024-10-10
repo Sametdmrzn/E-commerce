@@ -17,7 +17,7 @@ $image_url = $_POST['image_url'];
 
 // Veritabanına ekle
 $sql = "INSERT INTO products (name, description, price, stock_quantity, category, image_url) 
-        VALUES ('$name', '$description', $price, $stock_quantity, '$category', '$image_url')";
+        VALUES ('$name', '$desctription', $price, $stock_quantity, '$category', '$image_url')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Ürün başarıyla eklendi!";

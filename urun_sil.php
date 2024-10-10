@@ -4,17 +4,18 @@ include 'db.php'; // Veritabanı bağlantısını ekledik
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Ürünü veritabanından silme sorgusu
-    $sql = "DELETE FROM products WHERE id='$id'";
-
-    if ($conn->query($sql) === TRUE) {
+    // Prepared statement ile güvenli silme sorgusu
+    $stmt = $conn->prepare("DELETE FROM products WHERE id = ?");
+    $stmt->bind_param("i", $id); // "i" integer tipinde bir parametre olduğunu belirtir
+    if ($stmt->execute()) {
         echo "Ürün başarıyla silindi!";
     } else {
-        echo "Hata: " . $conn->error;
+        echo "Hata: " . $stmt->error;
     }
 
     // Ürün silindikten sonra listeye yönlendir
-    header("Location: list_products.php");
+    header("Location: urun_listesi.php");
     exit();
 }
+include 'admin_navbar.php';
 ?>

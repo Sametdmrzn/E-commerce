@@ -4,7 +4,12 @@ include 'db.php'; // Veritabanı bağlantısını ekledik
 // Ürünleri veritabanından çekme sorgusu
 $sql = "SELECT * FROM products";
 $result = $conn->query($sql);
+include 'admin_navbar.php';
+
+
+$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="tr">
@@ -36,7 +41,7 @@ $result = $conn->query($sql);
             echo "<td>" . $row["price"] . "</td>";
             echo "<td>" . $row["stock_quantity"] . "</td>";
             echo "<td>" . $row["category"] . "</td>";
-            echo "<td><a href='delete_product.php?id=" . $row["id"] . "'>Sil</a></td>";
+            echo "<td><a href='urun_sil.php?id=" . $row["id"] . "'>Sil</a></td>";
             echo "</tr>";
         }
     } else {
@@ -44,6 +49,7 @@ $result = $conn->query($sql);
     }
     ?>
 </table>
+
 
 </body>
 </html>
