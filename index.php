@@ -1,76 +1,57 @@
-    <?php
-    include 'db.php'; // Veritabanı bağlantısını ekledik
+<?php
+include 'db.php'; // Veritabanı bağlantısını ekledik
 
-    // Kategorileri veritabanından çekme
-    $category_sql = "SELECT name FROM categories";
-    $category_result = $conn->query($category_sql);
+// Kategorileri veritabanından çekme
+$category_sql = "SELECT name FROM categories";
+$category_result = $conn->query($category_sql); 
 
+$conn = new mysqli("localhost", "root", "", "bozkurt_toptan");
 
-    ?>
+if ($conn->connect_error) {
+    die("Veritabanı bağlantısı başarısız: " . $conn->connect_error);
+}
 
-    <!DOCTYPE html>
-    <html lang="tr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bozkurt Toptan</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> <!-- Bootstrap Icons dahil edildi -->
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <!-- Üst Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.php">Bozkurt Toptan</a>
-                <div class="search-container">
-                    <form class="d-flex" style="width: 60%;">
-                        <input class="form-control me-2" type="search" placeholder="Ne aramıştınız?" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Ara</button>
-                    </form>
-                </div>
-                <div class="navbar-nav">
-                    <a class="nav-link" href="Sepet.php"><i class="bi bi-cart"></i> Sepet</a>
-                    <a class="nav-link" href="#"><i class="bi bi-whatsapp"></i> WhatsApp</a>
-                    <a class="nav-link" href="hesap.php"><i class="bi bi-person"></i> Hesap</a>
-                </div>
+?>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bozkurt Toptan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"> <!-- Bootstrap Icons dahil edildi -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Üst Navbar --> 
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">Bozkurt Toptan</a>
+            <div class="search-container">
+                <form class="d-flex" style="width: 60%;">
+                    <input class="form-control me-2" type="search" placeholder="Ne aramıştınız?" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Ara</button>
+                </form>
             </div>
-        </nav>
-        <nav class="second-navbar navbar navbar-expand-lg navbar-light">
+            <div class="navbar-nav">
+                <a class="nav-link" href="Sepet.php"><i class="bi bi-cart"></i> Sepet</a>
+                <a class="nav-link" href="#"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+                <a class="nav-link" href="hesap.php"><i class="bi bi-person"></i> Hesap</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Alt Navbar -->
+<nav class="second-navbar navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
         <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">KAMPANYALI ÜRÜNLER</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">YAZMA</a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">EŞARP</a></li>
-                    <li><a class="dropdown-item" href="#">BONCUKLU YAZMA</a></li>
-                    <li><a class="dropdown-item" href="#">ŞAL</a></li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="Urunler.php?=category">İPLİK BONCUK ÇEŞİTLERİ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">TUHAFİYE ÜRÜNLERİ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">BİJÜTERİ ÇEŞİTLERİ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">HAVLU ÇEŞİTLERİ</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">SON EKLENENLER</a>
-            </li>
             <?php
-            // Kategorileri navbar'a ekleme
             if ($category_result->num_rows > 0) {
+                // Kategorileri veritabanından çekip listeye ekleme
                 while ($row = $category_result->fetch_assoc()) {
                     echo '<li class="nav-item">';
-                    echo '<a class="nav-link" href="#">' . htmlspecialchars($row['name']) . '</a>';
+                    echo '<a class="nav-link" href="Urunler.php?category=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a>';
                     echo '</li>';
                 }
             } else {
@@ -82,10 +63,9 @@
 </nav>
 
     <!-- Banner -->
-    <div class="banner-container" >
+    <div class="banner-container">
         <img src="assets/images/banner/banner.jpg" alt="banner" class="banner-image">
     </div>
-
 
     <!-- Footer -->
     <footer class="footer">
@@ -111,9 +91,8 @@
         </div>
     </footer>
 
+    <script src="assets/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
-        <script src="assets/script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-
-    </body>
-    </html>
+</body>
+</html>

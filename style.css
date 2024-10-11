@@ -5,57 +5,109 @@ html, body {
 }
 
 .card {
-    display: flex;
-    flex-direction: column; /* Dikey yönde hizalanma */
-    height: 100%; /* Kartın yüksekliği */
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px; /* Kartın maksimum genişliği */
-    margin: 10px; /* Kartlar arasında boşluk */
-    overflow: hidden; /* Taşan kısımları gizle */
-  }
-  
-  .card-image {
-    height: 70%; /* Fotoğraf kısmı %70'lik alanı kaplayacak */
-    overflow: hidden; /* Taşan kısmı gizle */
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Fotoğrafın kesilmeden alanı doldurmasını sağlar */
-  }
-  
-  .card-body {
-    height: 30%; /* Yazı kısmı %30'luk alanı kaplayacak */
-    padding: 10px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .card-title {
-    margin: 0;
-    font-size: 1.2rem;
-  }
-  
-  .card-text {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-  
-.card-img-top {
-    height: 200px;
-    object-fit: cover; /* Görsellerin düzgün bir şekilde sığdırılmasını sağlar */
+    border: none; /* Kenarlıkları kaldıralım */
+    border-radius: 15px; /* Köşeleri yuvarlak yapalım */
+    overflow: hidden; /* Taşan alanları gizleyelim */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif bir gölge ekleyelim */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Hover efekti için geçiş ekleyelim */
 }
 
-.price {
-    color: #28a745;
-    font-size: 1.3rem;
-    font-weight: 700;
+.card:hover {
+    transform: translateY(-10px); /* Hover efektinde kartı yukarı kaldıralım */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Hoverda gölgeyi yoğunlaştıralım */
+}
+
+  
+/* Ürün resmi daha büyük ve estetik gözüksün */
+.card img {
+    height: 250px; /* Ürün resmini büyük yapalım */
+    object-fit: cover; /* Resmi kırpmadan sığdırmak için */
+}
+
+/* Kart içindeki içerik */
+.card-body {
+    padding: 15px;
+}
+
+/* Ürün başlığı */
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
     margin-bottom: 10px;
 }
+
+
+/* Ürün açıklaması */
+.card-text {
+    font-size: 14px;
+    color: #777;
+    height: 40px;
+    overflow: hidden; /* Açıklama uzun olursa taşmasın */
+    margin-bottom: 10px;
+}
+
+/* Fiyat kısmı */
+.price {
+    font-size: 20px;
+    color: #FF5722; /* Trendyol'daki gibi turuncu renkte fiyat */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+/* Sepete Ekle butonu */
+.btn-success {
+    background-color: #FF5722; /* Turuncu buton rengi */
+    border: none; /* Kenarlık olmasın */
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.btn-success:hover {
+    background-color: #E64A19; /* Hoverda daha koyu turuncu */
+}
+
+/* Ürün adedi kısmı */
+.form-control {
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Ürün kartını responsive yapalım */
+@media (max-width: 768px) {
+    .card img {
+        height: 200px; /* Mobilde resimleri daha küçük yapalım */
+    }
+}
+.card {
+    border: 1px solid #dee2e6; /* Kartın kenarını belirle */
+    border-radius: 0.5rem; /* Kart köşelerini yuvarla */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge ekle */
+}
+
+.card-body {
+    text-align: center; /* Metinlerin ortalanması için */
+}
+
+.card-title {
+    font-weight: bold; /* Başlığı kalın yap */
+    font-size: 1.2rem; /* Başlık boyutu */
+}
+
+.card-text {
+    margin-bottom: 0.5rem; /* Kart metinleri arasında boşluk */
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Sil butonunun rengini belirle */
+    border: none; /* Kenarlığını kaldır */
+}
+
 
 .container {
     background-color: #f9f9f9; /* Hafif bir arka plan rengi */
@@ -63,11 +115,6 @@ html, body {
     border-radius: 10px; /* Daha yumuşak köşeler */
 }
  
-  .card:hover  {
-    background-color: #f0f0f0; /* Arka plan rengini değiştir */
-  }
- 
-  
   .card:hover .card-title {
     color: #007bff; /* Başlık rengini değiştir */
   }
