@@ -62,13 +62,12 @@ $category_result = $conn->query($category_sql);
             // Eğer sepet doluysa ürünleri göster
             if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                 foreach ($_SESSION['cart'] as $key => $item) {
-                    $total_item_price = $item['price'] * $item['quantity'];
-                    echo '<div class="col-md-4 mb-3">'; // Her ürünü 4 kolonlu yap
+                    $total_item_price = floatval($item['price']) * intval($item['quantity']);                    echo '<div class="col-md-4 mb-3">'; // Her ürünü 4 kolonlu yap
                     echo '<div class="card">';
                     echo '<div class="card-body">';
-                    echo '<h5 class="card-title">' . htmlspecialchars($item['name']) . '</h5>';
-                    echo '<p class="card-text">Fiyat: ' . number_format($item['price'], 2) . ' TL</p>';
-                    echo '<p class="card-text">Adet: ' . htmlspecialchars($item['quantity']) . '</p>';
+                    echo '<h5 class="card-title">' . ($item['name']) . '</h5>';
+                    echo '<p class="card-text">Fiyat: ' . number_format(floatval($item['price']), 2) . ' TL</p>';
+                    echo '<p class="card-text">Adet: ' .($item['quantity']) . '</p>';
                     echo '<p class="card-text">Toplam: ' . number_format($total_item_price, 2) . ' TL</p>';
                     echo '<form method="POST" action="sepet.php">';
                     echo '<input type="hidden" name="remove_key" value="' . $key . '">';

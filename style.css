@@ -1,69 +1,80 @@
 html, body {
     height: 100%;
     margin: 0;
-    padding: 0; /* Padding kaldır */
+    padding: 0;
 }
 
+/* Kartlar için kapsayıcı ayarları */
+.row {
+    display: flex; /* Flexbox kullanımı */
+    flex-wrap: wrap; /* Kartların taşmasını sağla */
+    justify-content: center; /* Kartları yatayda ortala */
+    margin: 20px 0; /* Üst ve alt için boşluk */
+}
+
+/* Kart ayarları */
 .card {
-    border: none; /* Kenarlıkları kaldıralım */
-    border-radius: 15px; /* Köşeleri yuvarlak yapalım */
-    overflow: hidden; /* Taşan alanları gizleyelim */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif bir gölge ekleyelim */
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Hover efekti için geçiş ekleyelim */
+    border: none; /* Kenarlıkları kaldır */
+    border-radius: 10px; /* Köşeleri yuvarla */
+    overflow: hidden; /* Taşan alanları gizle */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hover efekti için geçiş */
+    max-width: 350px; /* Kart boyutu */
+
 }
 
+/* Hover efekti */
 .card:hover {
-    transform: translateY(-10px); /* Hover efektinde kartı yukarı kaldıralım */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Hoverda gölgeyi yoğunlaştıralım */
+    transform: translateY(-5px); /* Hoverda yukarı kaldır */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Hoverda gölgeyi artır */
 }
 
-  
-/* Ürün resmi daha büyük ve estetik gözüksün */
+/* Ürün resmi ayarları */
 .card img {
-    height: 250px; /* Ürün resmini büyük yapalım */
-    object-fit: cover; /* Resmi kırpmadan sığdırmak için */
+    height: 200px; /* Ürün resmini büyük yap */
+    object-fit: cover; /* Resmi kırpmadan sığdır */
 }
 
-/* Kart içindeki içerik */
+/* Kart içeriği */
 .card-body {
-    padding: 15px;
+    padding: 15px; /* İçerik alanının padding ayarı */
 }
 
 /* Ürün başlığı */
 .card-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 16px; /* Başlık boyutu */
+    font-weight: bold; /* Kalın yazı */
+    color: #333; /* Başlık rengi */
+    margin: 5px 0; /* Yukarı ve aşağı boşluk */
 }
-
 
 /* Ürün açıklaması */
 .card-text {
-    font-size: 14px;
-    color: #777;
-    height: 40px;
-    overflow: hidden; /* Açıklama uzun olursa taşmasın */
-    margin-bottom: 10px;
+    font-size: 12px; /* Açıklama boyutu */
+    color: #777; /* Açıklama rengi */
+    height: 30px; /* Açıklama taşmasın */
+    overflow: hidden; /* Taşmayı önle */
+    margin-bottom: 5px; /* Açıklama ile altındaki içerik arasındaki boşluk */
 }
 
-/* Fiyat kısmı */
+/* Fiyat ayarları */
 .price {
-    font-size: 20px;
-    color: #FF5722; /* Trendyol'daki gibi turuncu renkte fiyat */
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 18px; /* Fiyat boyutu */
+    color: #FF5722; /* Turuncu fiyat rengi */
+    font-weight: bold; /* Kalın yazı */
+    margin-bottom: 10px; /* Fiyat ile altındaki içerik arasındaki boşluk */
 }
+
 /* Sepete Ekle butonu */
 .btn-success {
     background-color: #FF5722; /* Turuncu buton rengi */
     border: none; /* Kenarlık olmasın */
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-    width: 100%;
+    padding: 10px; /* Buton içindeki padding */
+    font-size: 14px; /* Font boyutu */
+    font-weight: bold; /* Kalın yazı */
+    text-transform: uppercase; /* Büyük harf dönüşümü */
+    transition: background-color 0.3s ease; /* Hover geçişi */
+    width: 100%; /* Buton genişliği */
 }
 
 .btn-success:hover {
@@ -72,53 +83,19 @@ html, body {
 
 /* Ürün adedi kısmı */
 .form-control {
-    margin-bottom: 10px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #ddd;
+    margin-bottom: 10px; /* Ürün adedi girişi altındaki boşluk */
+    text-align: center; /* Metni ortala */
+    border-radius: 5px; /* Köşeleri yuvarla */
+    border: 1px solid #ddd; /* Kenarlık rengi */
 }
 
-/* Ürün kartını responsive yapalım */
+/* Responsive ayarları */
 @media (max-width: 768px) {
     .card img {
-        height: 200px; /* Mobilde resimleri daha küçük yapalım */
+        height: 150px; /* Mobilde resimleri daha küçük yap */
     }
 }
-.card {
-    border: 1px solid #dee2e6; /* Kartın kenarını belirle */
-    border-radius: 0.5rem; /* Kart köşelerini yuvarla */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge ekle */
-}
 
-.card-body {
-    text-align: center; /* Metinlerin ortalanması için */
-}
-
-.card-title {
-    font-weight: bold; /* Başlığı kalın yap */
-    font-size: 1.2rem; /* Başlık boyutu */
-}
-
-.card-text {
-    margin-bottom: 0.5rem; /* Kart metinleri arasında boşluk */
-}
-
-.btn-danger {
-    background-color: #dc3545; /* Sil butonunun rengini belirle */
-    border: none; /* Kenarlığını kaldır */
-}
-
-
-.container {
-    background-color: #f9f9f9; /* Hafif bir arka plan rengi */
-    padding: 20px; /* Kenar boşlukları */
-    border-radius: 10px; /* Daha yumuşak köşeler */
-}
- 
-  .card:hover .card-title {
-    color: #007bff; /* Başlık rengini değiştir */
-  }
-  
 
 .whatsapp-link {
     color: green; /* WhatsApp metin rengi */

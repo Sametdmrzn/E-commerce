@@ -83,41 +83,44 @@ if (isset($_POST['add_to_cart'])) {
         </div>
     </nav>
 
+    <div class="container mt-5">
     <div class="row justify-content-center">
-    <?php
-    // Ürünleri veritabanından çekme işlemi
-    $result = $conn->query("SELECT * FROM products"); // Örnek ürün sorgusu
-    while ($row = $result->fetch_assoc()) {
-        if (!empty($row['image_url'])) {
-            $imageData = base64_encode($row['image_url']);
-            $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-        } else {
-            $imageSrc = $row['image_url']; 
+        <?php
+        // Ürünleri veritabanından çekme işlemi
+        $result = $conn->query("SELECT * FROM products"); // Örnek ürün sorgusu
+        while ($row = $result->fetch_assoc()) {
+            if (!empty($row['image_url'])) {
+                $imageData = base64_encode($row['image_url']);
+                $imageSrc = 'data:image/jpeg;base64,' . $imageData;
+            } else {
+                $imageSrc = $row['image_url']; 
+            }
+
+            echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">'; // Responsive kolon yapısı
+            echo '<div class="card text-center shadow-sm">'; // Kart
+            echo '<img src="' . $imageSrc . '" class="card-img-top" alt="' . htmlspecialchars($row['name']) . '">';
+            echo '<div class="card-body">';
+            echo '<h5 class="card-title">' . ($row['name']) . '</h5>';
+            echo '<p class="card-text">' . ($row['desctription']) . '</p>'; // Düzeltme: 'description'
+            echo '<div class="price mb-2">₺' . ($row['price']) . '</div>';
+            
+            // Sepete ekle formu
+            echo '<form method="POST" action="">';
+            echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
+            echo '<input type="hidden" name="product_name" value="' . htmlspecialchars($row['name']) . '">';
+            echo '<input type="hidden" name="product_price" value="' . htmlspecialchars($row['price']) . '">';
+            echo '<input type="number" name="product_quantity" value="1" min="1" class="form-control mb-2" style="width: 80px; margin: 0 auto;">'; // Genişliği ayarla
+            echo '<button type="submit" name="add_to_cart" class="btn btn-success">Sepete Ekle</button>';
+            echo '</form>';
+
+            echo '</div>'; // card-body
+            echo '</div>'; // card
+            echo '</div>'; // col
         }
-
-        echo '<div class="col-md-4">';
-        echo '<div class="card text-center mb-4 shadow-sm">';
-        echo '<img src="' . $imageSrc . '" class="card-img-top" alt="' . htmlspecialchars($row['name']) . '">';
-        echo '<div class="card-body">';
-        echo '<h5 class="card-title">' . htmlspecialchars($row['name']) . '</h5>';
-        echo '<p class="card-text">' . htmlspecialchars($row['desctription']) . '</p>';
-        echo '<div class="price">₺' . htmlspecialchars($row['price']) . '</div>';
-        
-        // Sepete ekle formu
-        echo '<form method="POST" action="">';
-        echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
-        echo '<input type="hidden" name="product_name" value="' . htmlspecialchars($row['name']) . '">';
-        echo '<input type="hidden" name="product_price" value="' . htmlspecialchars($row['price']) . '">';
-        echo '<input type="number" name="product_quantity" value="1" min="1" class="form-control mb-2">';
-        echo '<button type="submit" name="add_to_cart" class="btn btn-success">Sepete Ekle</button>';
-        echo '</form>';
-
-        echo '</div>';
-        echo '</div>';
-        echo '</div>';
-    }
-    ?>
+        ?>
+    </div>
 </div>
+
 
 
     <!-- Footer -->
