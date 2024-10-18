@@ -36,7 +36,9 @@ if ($conn->connect_error) {
             </div>
             <div class="navbar-nav">
                 <a class="nav-link" href="Sepet.php"><i class="bi bi-cart"></i> Sepet</a>
-                <a class="nav-link" href="#"><i class="bi bi-whatsapp"></i> WhatsApp</a>
+                <a class="nav-link" href="https://wa.me/905469467889" target="_blank">
+                <i class="bi bi-whatsapp"></i> WhatsApp
+                </a>
                 <a class="nav-link" href="hesap.php"><i class="bi bi-person"></i> Hesap</a>
             </div>
         </div>
