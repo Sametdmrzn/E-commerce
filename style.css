@@ -215,3 +215,46 @@ footer {
 footer p {
     margin: 0; /* Alt yazının boşluğunu sıfırla */
 }
+
+/* Mobil uyumlu yapılar */
+.search-container form {
+    width: 100%; /* Form genişliği mobilde tam genişlikte */
+    margin-bottom: 10px; /* Mobilde daha fazla boşluk */
+}
+
+.navbar-nav {
+    flex-direction: column; /* Mobilde dikey sırala */
+}
+
+/* Kart yapılarını küçültmek ve düzenlemek için */
+.card {
+    margin-bottom: 15px; /* Kartların arası daha rahat */
+}
+
+.price {
+    font-size: 1.2rem; /* Fiyatı daha büyük yap */
+}
+
+@media (max-width: 768px) {
+    .navbar .container-fluid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar-brand {
+        margin-bottom: 15px;
+    }
+
+    .second-navbar ul {
+        justify-content: center; /* Kategoriler merkezde hizalansın */
+        flex-wrap: wrap;
+    }
+
+    .card img {
+        height: 200px; /* Mobilde resimleri daha küçük göster */
+    }
+
+    .footer {
+        padding: 20px 0;
+    }
+}

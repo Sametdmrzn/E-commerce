@@ -41,6 +41,50 @@ if (isset($_POST['add_to_cart'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Mobil uyumlu yapılar */
+        .search-container form {
+            width: 100%; /* Form genişliği mobilde tam genişlikte */
+            margin-bottom: 10px; /* Mobilde daha fazla boşluk */
+        }
+        
+        .navbar-nav {
+            flex-direction: column; /* Mobilde dikey sırala */
+        }
+
+        /* Kart yapılarını küçültmek ve düzenlemek için */
+        .card {
+            margin-bottom: 15px; /* Kartların arası daha rahat */
+        }
+
+        .price {
+            font-size: 1.2rem; /* Fiyatı daha büyük yap */
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container-fluid {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .navbar-brand {
+                margin-bottom: 15px;
+            }
+
+            .second-navbar ul {
+                justify-content: center; /* Kategoriler merkezde hizalansın */
+                flex-wrap: wrap;
+            }
+
+            .card img {
+                height: 200px; /* Mobilde resimleri daha küçük göster */
+            }
+
+            .footer {
+                padding: 20px 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Üst Navbar -->
@@ -48,7 +92,7 @@ if (isset($_POST['add_to_cart'])) {
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Bozkurt Toptan</a>
             <div class="search-container">
-                <form class="d-flex" action="Urunler.php" method="GET" style="width: 60%;">
+                <form class="d-flex" action="Urunler.php" method="GET">
                     <input class="form-control me-2" type="search" name="query" placeholder="Ne aramıştınız?" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Ara</button>
                 </form>
@@ -69,7 +113,6 @@ if (isset($_POST['add_to_cart'])) {
                 $category_sql = "SELECT * FROM categories"; 
                 $category_result = $conn->query($category_sql);
                 if ($category_result->num_rows > 0) {
-                    // Kategorileri veritabanından çekip listeye ekleme
                     while ($row = $category_result->fetch_assoc()) {
                         echo '<li class="nav-item">';
                         echo '<a class="nav-link" href="Urunler.php?category=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a>';
@@ -86,30 +129,21 @@ if (isset($_POST['add_to_cart'])) {
     <div class="container mt-5">
         <div class="row justify-content-center">
             <?php
-            // Arama veya kategoriye göre ürünleri filtreleme
             $whereClause = "";
             if (isset($_GET['query'])) {
-                // Arama sorgusu varsa
                 $search_query = $conn->real_escape_string($_GET['query']);
                 $whereClause = "WHERE name LIKE '%$search_query%' OR desctription LIKE '%$search_query%'";
             } elseif (isset($_GET['category'])) {
-                // Kategori seçimi varsa
                 $category = $conn->real_escape_string($_GET['category']);
                 $whereClause = "WHERE category = '$category'";
             }
 
-            // Ürünleri veritabanından çekme işlemi
             $result = $conn->query("SELECT * FROM products $whereClause");
             
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    if (!empty($row['image_url'])) {
-                        $imageData = base64_encode($row['image_url']);
-                        $imageSrc = 'data:image/jpeg;base64,' . $imageData;
-                    } else {
-                        $imageSrc = $row['image_url']; 
-                    }
-
+                    $imageSrc = !empty($row['image_url']) ? 'data:image/jpeg;base64,' . base64_encode($row['image_url']) : $row['image_url'];
+                    
                     echo '<div class="col-lg-3 col-md-4 col-sm-6 mb-4">';
                     echo '<div class="card text-center shadow-sm">';
                     echo '<img src="' . $imageSrc . '" class="card-img-top" alt="' . htmlspecialchars($row['name']) . '">';
@@ -118,18 +152,17 @@ if (isset($_POST['add_to_cart'])) {
                     echo '<p class="card-text">' . htmlspecialchars($row['desctription']) . '</p>';
                     echo '<div class="price mb-2">₺' . htmlspecialchars($row['price']) . '</div>';
 
-                    // Sepete ekle formu
                     echo '<form method="POST" action="">';
                     echo '<input type="hidden" name="product_id" value="' . $row['id'] . '">';
                     echo '<input type="hidden" name="product_name" value="' . htmlspecialchars($row['name']) . '">';
                     echo '<input type="hidden" name="product_price" value="' . htmlspecialchars($row['price']) . '">';
-                    echo '<input type="number" name="product_quantity" value="1" min="1" class="form-control mb-2" style="width: 80px; margin: 0 auto;">'; // Genişliği ayarla
+                    echo '<input type="number" name="product_quantity" value="1" min="1" class="form-control mb-2" style="width: 80px; margin: 0 auto;">';
                     echo '<button type="submit" name="add_to_cart" class="btn btn-success">Sepete Ekle</button>';
                     echo '</form>';
 
-                    echo '</div>'; // card-body
-                    echo '</div>'; // card
-                    echo '</div>'; // col
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
                 }
             } else {
                 echo "<p>Aradığınız kriterlere uygun ürün bulunamadı.</p>";
@@ -139,7 +172,7 @@ if (isset($_POST['add_to_cart'])) {
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer bg-light">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-4">
@@ -157,4 +190,10 @@ if (isset($_POST['add_to_cart'])) {
                     <p><a href="#">Gizlilik Politikası</a></p>
                 </div>
             </div>
-            <hr
+            <hr>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

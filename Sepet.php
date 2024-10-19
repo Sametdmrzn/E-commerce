@@ -22,19 +22,23 @@ $category_result = $conn->query($category_sql);
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Bozkurt Toptan</a>
-            <div class="search-container">
-                <form class="d-flex" style="width: 60%;">
-                    <input class="form-control me-2" type="search" placeholder="Ne aramıştınız?" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Ara</button>
-                </form>
-            </div>
-            <div class="navbar-nav">
-                <a class="nav-link" href="Sepet.php"><i class="bi bi-cart"></i> Sepet
-                </a>
-                <a class="nav-link" href="https://wa.me/905469467889" target="_blank">
-                <i class="bi bi-whatsapp"></i> WhatsApp
-                </a>
-                <a class="nav-link" href="hesap.php"><i class="bi bi-person"></i> Hesap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="search-container mx-auto my-2 my-lg-0" style="width: 60%;">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Ne aramıştınız?" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Ara</button>
+                    </form>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="Sepet.php"><i class="bi bi-cart"></i> Sepet</a>
+                    <a class="nav-link" href="https://wa.me/905469467889" target="_blank">
+                        <i class="bi bi-whatsapp"></i> WhatsApp
+                    </a>
+                    <a class="nav-link" href="hesap.php"><i class="bi bi-person"></i> Hesap</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -42,19 +46,24 @@ $category_result = $conn->query($category_sql);
     <!-- Alt Navbar -->
     <nav class="second-navbar navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <ul class="navbar-nav mx-auto">
-                <?php
-                if ($category_result->num_rows > 0) {
-                    while ($row = $category_result->fetch_assoc()) {
-                        echo '<li class="nav-item">';
-                        echo '<a class="nav-link" href="Urunler.php?category=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a>';
-                        echo '</li>';
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#categoryNav" aria-controls="categoryNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="categoryNav">
+                <ul class="navbar-nav mx-auto">
+                    <?php
+                    if ($category_result->num_rows > 0) {
+                        while ($row = $category_result->fetch_assoc()) {
+                            echo '<li class="nav-item">';
+                            echo '<a class="nav-link" href="Urunler.php?category=' . urlencode($row['name']) . '">' . htmlspecialchars($row['name']) . '</a>';
+                            echo '</li>';
+                        }
+                    } else {
+                        echo '<li class="nav-item"><a class="nav-link" href="#">Kategori bulunamadı</a></li>';
                     }
-                } else {
-                    echo '<li class="nav-item"><a class="nav-link" href="#">Kategori bulunamadı</a></li>';
-                }
-                ?>
-            </ul>
+                    ?>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -66,8 +75,8 @@ $category_result = $conn->query($category_sql);
             if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                 foreach ($_SESSION['cart'] as $key => $item) {
                     $total_item_price = floatval($item['price']) * intval($item['quantity']);
-                    echo '<div class="col-md-4 mb-3">'; // Her ürünü 4 kolonlu yap
-                    echo '<div class="card">';
+                    echo '<div class="col-sm-12 col-md-6 col-lg-4 mb-3">'; // Her ürünü mobil uyumlu hale getirdik
+                    echo '<div class="card h-100">';
                     echo '<div class="card-body">';
                     echo '<h5 class="card-title">' . ($item['name']) . '</h5>';
                     echo '<p class="card-text">Fiyat: ' . number_format(floatval($item['price']), 2) . ' TL</p>';
@@ -102,7 +111,7 @@ $category_result = $conn->query($category_sql);
                 // WhatsApp URL'sini oluşturma
                 $whatsapp_url = "https://api.whatsapp.com/send?phone=905469467889&text=" . urlencode($whatsapp_message);
                 
-                echo '<div class="col-md-12 text-center mt-4">';
+                echo '<div class="col-12 text-center mt-4">';
                 echo '<a href="' . $whatsapp_url . '" class="btn btn-success"><i class="bi bi-whatsapp"></i> Sepeti WhatsApp ile Gönder</a>';
                 echo '</div>';
 
@@ -125,7 +134,7 @@ $category_result = $conn->query($category_sql);
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer mt-5">
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-4">
