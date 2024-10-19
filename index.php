@@ -29,11 +29,12 @@ if ($conn->connect_error) {
         <div class="container-fluid">
             <a class="navbar-brand" href="index.php">Bozkurt Toptan</a>
             <div class="search-container">
-                <form class="d-flex" style="width: 60%;">
-                    <input class="form-control me-2" type="search" placeholder="Ne aramıştınız?" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Ara</button>
-                </form>
-            </div>
+    <form class="d-flex" action="search.php" method="GET" style="width: 60%;">
+        <input class="form-control me-2" type="search" name="query" placeholder="Ne aramıştınız?" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Ara</button>
+    </form>
+</div>
+
             <div class="navbar-nav">
                 <a class="nav-link" href="Sepet.php"><i class="bi bi-cart"></i> Sepet</a>
                 <a class="nav-link" href="https://wa.me/905469467889" target="_blank">
@@ -66,7 +67,7 @@ if ($conn->connect_error) {
 
     <!-- Banner -->
     <div class="banner-container">
-        <img src="assets/images/banner/banner.jpg" alt="banner" class="banner-image">
+        <img src="images/banner/banner.jpg" alt="banner" class="banner-image">
     </div>
 
     <!-- Footer -->

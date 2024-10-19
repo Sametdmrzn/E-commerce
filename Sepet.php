@@ -93,6 +93,7 @@ $category_result = $conn->query($category_sql);
 
                     $whatsapp_message .= "{$item_name} - Adet: {$item_quantity} - Fiyat: {$item_price} TL\n";
                     $total_price += floatval($item['price']) * intval($item['quantity']);
+                    
                 }
 
                 $total_price_formatted = number_format($total_price, 2);
